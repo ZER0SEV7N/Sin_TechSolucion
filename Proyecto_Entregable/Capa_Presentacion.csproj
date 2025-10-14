@@ -52,6 +52,12 @@
     <Compile Include="Frm_Formularios.Designer.cs">
       <DependentUpon>Frm_Formularios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Principal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Principal.Designer.cs">
+      <DependentUpon>Frm_Principal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_vendedor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
     <EmbeddedResource Include="Frm_Inicio.resx">
       <DependentUpon>Frm_Inicio.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Principal.resx">
+      <DependentUpon>Frm_Principal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_vendedor.resx">
       <DependentUpon>Frm_vendedor.cs</DependentUpon>
     </EmbeddedResource>
@@ -92,6 +101,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -111,6 +121,34 @@
       <Project>{0e991504-7e0c-4404-bdac-85634104cce8}</Project>
       <Name>Capa_Negocio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resource\32px-Crystal_Clear_action_button_cancel.png" />
+    <Content Include="Resource\Aceptar.png" />
+    <Content Include="Resource\Administracion.png" />
+    <Content Include="Resource\Agregar.png" />
+    <Content Include="Resource\cambiar_pass.png" />
+    <Content Include="Resource\Cancelar.png" />
+    <Content Include="Resource\Candado.png" />
+    <Content Include="Resource\CerrarSesion.png" />
+    <Content Include="Resource\Eliminar.png" />
+    <Content Include="Resource\FILE1256.PNG" />
+    <Content Include="Resource\FILE1259.PNG" />
+    <Content Include="Resource\FILE1297.PNG" />
+    <Content Include="Resource\FILE1305.PNG" />
+    <Content Include="Resource\FILE1457.PNG" />
+    <Content Include="Resource\FILE2194.PNG" />
+    <Content Include="Resource\FILE2403.PNG" />
+    <Content Include="Resource\Filtrar.png" />
+    <Content Include="Resource\login-check_48004.png" />
+    <Content Include="Resource\LogoElektra.jpg" />
+    <Content Include="Resource\LogoElektra.PNG" />
+    <Content Include="Resource\Menu.png" />
+    <Content Include="Resource\minizar.png" />
+    <Content Include="Resource\reloj.png" />
+    <Content Include="Resource\Salida.png" />
+    <Content Include="Resource\Sign In.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
