@@ -1,6 +1,6 @@
 ﻿namespace Proyecto_Entregable
 {
-    partial class Frm_vendedor
+    partial class Frm_Vendedor
     {
         /// <summary>
         /// Required designer variable.

@@ -1,6 +1,6 @@
 ﻿namespace Proyecto_Entregable
 {
-    partial class Frm_Formularios
+    partial class Frm_Informes
     {
         /// <summary>
         /// Required designer variable.

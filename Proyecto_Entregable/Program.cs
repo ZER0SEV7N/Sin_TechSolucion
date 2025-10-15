@@ -16,9 +16,10 @@ namespace Proyecto_Entregable
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //Llamar al formulario de login
             Application.Run(new Frm_Login());
         }
-
+        //Clase estática para almacenar la información de la sesión
         public class Info_Organization_Session
         {
             public static string xDireccion = "Av Siempre Viva 123";

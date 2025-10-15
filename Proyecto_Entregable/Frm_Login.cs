@@ -40,12 +40,12 @@ namespace Proyecto_Entregable
                 //Guardar la sesión en Program.Info_Organization_Session
                 Program.Info_Organization_Session.xId_Usuario = Convert.ToInt32(row["idUser"]);
                 Program.Info_Organization_Session.xNombres = row["nombre"].ToString();
-                Program.Info_Organization_Session.xApellidos = row["apellidos"].ToString();
+                Program.Info_Organization_Session.xApellidos = row["apellido"].ToString();
                 Program.Info_Organization_Session.xCorreo = row["correo"].ToString();
                 Program.Info_Organization_Session.xRol = row["nombreRol"].ToString();
 
                 //Mostrar formulario principal
-                string nombreCompleto = $"{row["nombre"]} {row["apellidos"]}";
+                string nombreCompleto = $"{row["nombre"]} {row["apellido"]}";
                 string rol = row["nombreRol"].ToString();
                 //Cargar el formulario principal
                 Frm_Principal frm = new Frm_Principal();

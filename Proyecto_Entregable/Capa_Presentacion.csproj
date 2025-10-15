@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Frm_Formularios.cs">
+    <Compile Include="Menus\Frm_Informes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_Formularios.Designer.cs">
-      <DependentUpon>Frm_Formularios.cs</DependentUpon>
+    <Compile Include="Menus\Frm_Informes.Designer.cs">
+      <DependentUpon>Frm_Informes.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm_Principal.cs">
       <SubType>Form</SubType>
@@ -58,11 +58,11 @@
     <Compile Include="Frm_Principal.Designer.cs">
       <DependentUpon>Frm_Principal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm_vendedor.cs">
+    <Compile Include="Menus\Frm_Vendedor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_vendedor.Designer.cs">
-      <DependentUpon>Frm_vendedor.cs</DependentUpon>
+    <Compile Include="Menus\Frm_Vendedor.Designer.cs">
+      <DependentUpon>Frm_Vendedor.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm_Login.cs">
       <SubType>Form</SubType>
@@ -70,18 +70,18 @@
     <Compile Include="Frm_Login.Designer.cs">
       <DependentUpon>Frm_Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm_Almacenes.cs">
+    <Compile Include="Menus\Frm_Almacenes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_Almacenes.Designer.cs">
+    <Compile Include="Menus\Frm_Almacenes.Designer.cs">
       <DependentUpon>Frm_Almacenes.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Frm_Formularios.resx">
-      <DependentUpon>Frm_Formularios.cs</DependentUpon>
+    <EmbeddedResource Include="Menus\Frm_Informes.resx">
+      <DependentUpon>Frm_Informes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm_Almacenes.resx">
+    <EmbeddedResource Include="Menus\Frm_Almacenes.resx">
       <DependentUpon>Frm_Almacenes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Login.resx">
@@ -90,8 +90,8 @@
     <EmbeddedResource Include="Frm_Principal.resx">
       <DependentUpon>Frm_Principal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm_vendedor.resx">
-      <DependentUpon>Frm_vendedor.cs</DependentUpon>
+    <EmbeddedResource Include="Menus\Frm_Vendedor.resx">
+      <DependentUpon>Frm_Vendedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

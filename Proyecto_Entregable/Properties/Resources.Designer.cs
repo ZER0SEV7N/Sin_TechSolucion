@@ -63,6 +63,16 @@ namespace Proyecto_Entregable.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _32px_Crystal_Clear_action_button_cancel {
+            get {
+                object obj = ResourceManager.GetObject("32px-Crystal_Clear_action_button_cancel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Administracion {
             get {
                 object obj = ResourceManager.GetObject("Administracion", resourceCulture);
