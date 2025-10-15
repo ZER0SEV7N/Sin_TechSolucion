@@ -1,6 +1,6 @@
 ﻿namespace Proyecto_Entregable
 {
-    partial class Frm_Inicio
+    partial class Frm_Login
     {
         /// <summary>
         /// Variable del diseñador necesaria.

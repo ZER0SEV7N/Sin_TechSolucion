@@ -16,7 +16,7 @@ namespace Capa_Negocio
         public DataTable CN_TabalaProductos()
         {
             DataTable dt = new DataTable();
-            dt = ObjProducto.CD_TabalaProductos();
+            dt = ObjProducto.ListarProductos();
             return dt;
         }
     }
