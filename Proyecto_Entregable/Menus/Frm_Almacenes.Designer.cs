@@ -28,48 +28,41 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.DGVAlmacen = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.DGVAlmacen)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(130, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Formulario de Alamcenista";
             // 
             // DGVAlmacen
             // 
             this.DGVAlmacen.AllowUserToOrderColumns = true;
             this.DGVAlmacen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVAlmacen.Location = new System.Drawing.Point(12, 37);
+            this.DGVAlmacen.Location = new System.Drawing.Point(13, 13);
+            this.DGVAlmacen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DGVAlmacen.Name = "DGVAlmacen";
-            this.DGVAlmacen.Size = new System.Drawing.Size(349, 298);
+            this.DGVAlmacen.RowHeadersWidth = 51;
+            this.DGVAlmacen.Size = new System.Drawing.Size(680, 367);
             this.DGVAlmacen.TabIndex = 2;
             this.DGVAlmacen.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVAlmacen_CellContentClick);
             // 
-            // Frm_Almacn
+            // Frm_Almacenes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 491);
+            this.ControlBox = false;
             this.Controls.Add(this.DGVAlmacen);
-            this.Controls.Add(this.label1);
-            this.Name = "Frm_Almacn";
-            this.Text = "Form2";
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "Frm_Almacenes";
+            this.ShowIcon = false;
+            this.Text = "Almacen";
             ((System.ComponentModel.ISupportInitialize)(this.DGVAlmacen)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView DGVAlmacen;
     }
 }

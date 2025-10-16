@@ -26,7 +26,6 @@ namespace Proyecto_Entregable
         //meotod para invocar datos del producto
         private void CargarProducto()
         {
-            DGVAlmacen.DataSource = objProd.CN_TabalaProductos();
         }
     }
 }

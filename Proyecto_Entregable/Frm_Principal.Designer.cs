@@ -54,7 +54,7 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Location = new System.Drawing.Point(0, 101);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1067, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1213, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -70,7 +70,7 @@
             this.statusStrip1.Location = new System.Drawing.Point(0, 524);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1067, 30);
+            this.statusStrip1.Size = new System.Drawing.Size(1213, 30);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -91,21 +91,21 @@
             // 
             this.informacionToolStripMenuItem.Image = global::Proyecto_Entregable.Properties.Resources.FILE2194;
             this.informacionToolStripMenuItem.Name = "informacionToolStripMenuItem";
-            this.informacionToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.informacionToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
             this.informacionToolStripMenuItem.Text = "Informacion";
             // 
             // cambiarClaveToolStripMenuItem
             // 
             this.cambiarClaveToolStripMenuItem.Image = global::Proyecto_Entregable.Properties.Resources.login_check_48004;
             this.cambiarClaveToolStripMenuItem.Name = "cambiarClaveToolStripMenuItem";
-            this.cambiarClaveToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.cambiarClaveToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
             this.cambiarClaveToolStripMenuItem.Text = "Cambiar Clave";
             // 
             // cerrarSesionToolStripMenuItem
             // 
             this.cerrarSesionToolStripMenuItem.Image = global::Proyecto_Entregable.Properties.Resources._32px_Crystal_Clear_action_button_cancel;
             this.cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
-            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
             this.cerrarSesionToolStripMenuItem.Text = "Cerrar sesion";
             this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesiónToolStripMenuItem_Click);
             // 
@@ -125,7 +125,7 @@
             this.toolStripStatusLabelNombreYapellido.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.toolStripStatusLabelNombreYapellido.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.toolStripStatusLabelNombreYapellido.Name = "toolStripStatusLabelNombreYapellido";
-            this.toolStripStatusLabelNombreYapellido.Size = new System.Drawing.Size(602, 24);
+            this.toolStripStatusLabelNombreYapellido.Size = new System.Drawing.Size(641, 24);
             this.toolStripStatusLabelNombreYapellido.Spring = true;
             this.toolStripStatusLabelNombreYapellido.Text = "XXXXXXXXXXX";
             // 
@@ -158,7 +158,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1067, 101);
+            this.panel1.Size = new System.Drawing.Size(1213, 101);
             this.panel1.TabIndex = 2;
             // 
             // TelefonoLabel
@@ -198,10 +198,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.ClientSize = new System.Drawing.Size(1213, 554);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Frm_Principal";

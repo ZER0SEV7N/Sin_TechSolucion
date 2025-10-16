@@ -34,12 +34,26 @@ namespace Proyecto_Entregable
         //Funcion para abrir formularios hijos
         private void AbrirFormularios(Form FormHijo)
         {
-            //Cerrar formularios abiertos
+            //Buscar si el formulario ya está abierto
+            Form formularioExistente = Application.OpenForms
+                .Cast<Form>()
+                .FirstOrDefault(f => f.GetType() == FormHijo.GetType());
+
+            if (formularioExistente != null)
+            {
+                //Si ya está abierto, solo lo traemos al frente
+                formularioExistente.BringToFront();
+                formularioExistente.Activate();
+                return;
+            }
+
+            //Cerrar otros formularios MDI
             foreach (Form form in this.MdiChildren)
             {
                 form.Close();
             }
-            //Abrir formulario
+
+            //Mostrar el nuevo formulario
             FormHijo.MdiParent = this;
             FormHijo.Dock = DockStyle.Fill;
             FormHijo.Show();
@@ -89,9 +103,23 @@ namespace Proyecto_Entregable
         //Metodo para actualizar el menuStrip dependiendo del rol
         private void CargarOpcionesDelFormulario(String FormularioActivo)
         {
+            //Eliminar todos los menús dinámicos excepto los fijos como "Inicio" 
+            for (int i = menuStrip1.Items.Count - 1; i >= 0; i--)
+            {
+                //Obtener el nombre del item
+                string nombreItem = menuStrip1.Items[i].Text;
+                if (nombreItem != "Inicio")
+                {
+                    //Rempver el item del menu
+                    menuStrip1.Items.RemoveAt(i);
+                }
+            }
+            //Agregar opciones específicas según el formulario activo
             switch (FormularioActivo)
             {
+                //Caso Frm_Almacenes
                 case "Frm_Almacenes":
+                    //Agregar opciones especificas para Frm_Almacenes
                     ToolStripMenuItem menuProd = new ToolStripMenuItem("Productos");
                     menuProd.DropDownItems.Add("Agregar Producto", null, (s, e) => { /* Lógica para agregar producto */ });
                     menuProd.DropDownItems.Add("Modificar Producto", null, (s, e) => { /* Lógica para modificar producto */ });
@@ -104,12 +132,6 @@ namespace Proyecto_Entregable
                     break;
                 case "Frm_Informes":
                     //Agregar opciones especificas para Frm_Informes
-                    break;
-                default:
-                    // Si el formulario no tiene menú propio, muestra solo volver
-                    ToolStripMenuItem volverDefault = new ToolStripMenuItem("← Volver al menú principal");
-                    volverDefault.Click += (s, e) => CargarMenu(Program.Info_Organization_Session.xRol);
-                    menuStrip1.Items.Add(volverDefault);
                     break;
             }
         }
