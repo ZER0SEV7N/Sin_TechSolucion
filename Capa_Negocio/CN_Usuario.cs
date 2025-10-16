@@ -14,11 +14,14 @@ namespace Capa_Negocio
     {
         //referencia a la CD_Usuario
         CD_Usuario ObjUser = new CD_Usuario();
+        //Encriptacion
+
         //login
         public DataTable CN_Login(string correo, string passwrd)
         {
-            CD_Usuario objUser = new CD_Usuario();
-            return objUser.CD_LoginUser(correo, passwrd);
+            string passEncriptada = CN_Encriptacion.Encrip(passwrd);
+           
+            return ObjUser.CD_LoginUser(correo, passEncriptada);
         }
     }
 }

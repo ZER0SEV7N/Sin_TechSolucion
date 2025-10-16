@@ -51,14 +51,17 @@ namespace Capa_Datos
         //instancia de la conexion
         CD_Conexion _Conexion = new CD_Conexion();
         //metodo para manejar el login
-        public DataTable CD_LoginUser(string correo, string passwrd)
+        public DataTable CD_LoginUser(string correo, string passwrdHas)
         {
+            //encriptar la contraseña 
+            //encriptado nro1:
+            //encriptado nro2:
             //procedimiento almacenado
             SqlCommand cmd = new SqlCommand("PA_Login_Verificar", _Conexion.AbrirConexion());
             cmd.CommandType = CommandType.StoredProcedure;
             //Añadir los valores
             cmd.Parameters.AddWithValue("@Correo_In", correo);
-            cmd.Parameters.AddWithValue("@Contrasenia_In", passwrd);
+            cmd.Parameters.AddWithValue("@Contrasenia_In", passwrdHas);
             //Ejecutar el comando
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             //Crear el DataTable
