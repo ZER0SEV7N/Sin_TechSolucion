@@ -72,6 +72,7 @@ namespace Capa_Datos
             try
             {
                 SqlCommand cmd = new SqlCommand("SP_CRUD_Productos", _Conexion.AbrirConexion());
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Opcion", "INSERTAR");
                 cmd.Parameters.AddWithValue("@IdPro", DBNull.Value);
                 cmd.Parameters.AddWithValue("@Nombre", nombre);
@@ -87,6 +88,10 @@ namespace Capa_Datos
             {
                 Console.WriteLine(ex.Message);
             }
+            finally 
+            { 
+                _Conexion.CerrarConexion(); 
+            }
         }
         //metodo editar
         public void Editar(int idPro, string nombre, string descripcion, double precio, int stock, int idUser)
@@ -94,7 +99,8 @@ namespace Capa_Datos
             try
             {
                 SqlCommand cmd = new SqlCommand("SP_CRUD_Productos", _Conexion.AbrirConexion());
-                cmd.Parameters.AddWithValue("@Opcion", "EDITAR");
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Opcion", "ACTUALIZAR");
                 cmd.Parameters.AddWithValue("@IdPro", idPro);
                 cmd.Parameters.AddWithValue("@Nombre", nombre);
                 cmd.Parameters.AddWithValue("@Descripcion", descripcion);
@@ -108,6 +114,10 @@ namespace Capa_Datos
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                _Conexion.CerrarConexion();
             }
         }
         //metodo eliminar
@@ -126,11 +136,15 @@ namespace Capa_Datos
                 cmd.Parameters.AddWithValue("@IdUser", DBNull.Value);
 
                 cmd.ExecuteNonQuery();
-                _Conexion.CerrarConexion();
+               
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                _Conexion.CerrarConexion();
             }
 
         }

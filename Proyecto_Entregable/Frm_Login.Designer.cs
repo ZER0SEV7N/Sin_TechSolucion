@@ -42,7 +42,7 @@
             // 
             this.Txt_Usario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Txt_Usario.Location = new System.Drawing.Point(363, 88);
-            this.Txt_Usario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Txt_Usario.Margin = new System.Windows.Forms.Padding(4);
             this.Txt_Usario.Name = "Txt_Usario";
             this.Txt_Usario.Size = new System.Drawing.Size(305, 27);
             this.Txt_Usario.TabIndex = 0;
@@ -51,7 +51,7 @@
             // 
             this.Txt_Pass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Txt_Pass.Location = new System.Drawing.Point(363, 154);
-            this.Txt_Pass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Txt_Pass.Margin = new System.Windows.Forms.Padding(4);
             this.Txt_Pass.MaxLength = 30;
             this.Txt_Pass.Name = "Txt_Pass";
             this.Txt_Pass.PasswordChar = '*';
@@ -60,14 +60,20 @@
             // 
             // btn_Iniciar
             // 
+            this.btn_Iniciar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Iniciar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btn_Iniciar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_Iniciar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_Iniciar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Iniciar.Location = new System.Drawing.Point(414, 198);
-            this.btn_Iniciar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_Iniciar.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Iniciar.Name = "btn_Iniciar";
             this.btn_Iniciar.Size = new System.Drawing.Size(191, 41);
             this.btn_Iniciar.TabIndex = 2;
             this.btn_Iniciar.Text = "Iniciar sesion";
-            this.btn_Iniciar.UseVisualStyleBackColor = true;
+            this.btn_Iniciar.UseVisualStyleBackColor = false;
             this.btn_Iniciar.Click += new System.EventHandler(this.btn_Iniciar_Click);
             // 
             // label1
@@ -98,7 +104,7 @@
             this.pictureBox1.BackColor = System.Drawing.SystemColors.Info;
             this.pictureBox1.Image = global::Proyecto_Entregable.Properties.Resources.Administracion;
             this.pictureBox1.Location = new System.Drawing.Point(28, 53);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(307, 186);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -121,6 +127,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(751, 271);
             this.Controls.Add(this.label3);
@@ -130,7 +137,7 @@
             this.Controls.Add(this.btn_Iniciar);
             this.Controls.Add(this.Txt_Pass);
             this.Controls.Add(this.Txt_Usario);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Frm_Login";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

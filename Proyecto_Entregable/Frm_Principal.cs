@@ -121,9 +121,18 @@ namespace Proyecto_Entregable
                 case "Frm_Almacenes":
                     //Agregar opciones especificas para Frm_Almacenes
                     ToolStripMenuItem menuProd = new ToolStripMenuItem("Productos");
-                    menuProd.DropDownItems.Add("Agregar Producto", null, (s, e) => { /* Lógica para agregar producto */ });
-                    menuProd.DropDownItems.Add("Modificar Producto", null, (s, e) => { /* Lógica para modificar producto */ });
-                    menuProd.DropDownItems.Add("Eliminar Producto", null, (s, e) => { /* Lógica para eliminar producto */ });
+                    menuProd.DropDownItems.Add("Agregar Producto", null, (s, e) => {
+                        var form = this.ActiveMdiChild as Frm_Almacenes;
+                        form?.ActivarModoInsertar();
+                    });
+                    menuProd.DropDownItems.Add("Modificar Producto", null, (s, e) => {
+                        var form = this.ActiveMdiChild as Frm_Almacenes;
+                        form?.ActivarModoEditar();
+                    });
+                    menuProd.DropDownItems.Add("Eliminar Producto", null, (s, e) => {
+                        var form = this.ActiveMdiChild as Frm_Almacenes;
+                        form?.ActivarModoEliminar();
+                    });
                     menuProd.DropDownItems.Add("Generar Reporte de Productos", null, (s, e) => { /* Lógica para generar reporte */ });
                     menuStrip1.Items.AddRange(new ToolStripItem[] { menuProd});
                     break;
