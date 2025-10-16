@@ -45,11 +45,14 @@ namespace Capa_Datos
         {
             try
             {
-                SqlDataAdapter adapter = new SqlDataAdapter("SP_CRUD_Productos", _Conexion.AbrirConexion());
-                adapter.SelectCommand.CommandType = CommandType.Text;
-                //nombre de la tabla internamente
-                DataTable dt = new DataTable("Productos");
-                adapter.Fill(dt);
+                SqlCommand cmd = new SqlCommand("SP_CRUD_Productos", _Conexion.AbrirConexion());
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Opcion", "LISTAR");
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
                 return dt;
                
             }
