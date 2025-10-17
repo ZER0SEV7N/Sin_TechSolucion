@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Capa_Datos
 {
-    internal class CD_Ventas
+    public class CD_Ventas
     {
         //Atributos
         private int _idVenta;
@@ -38,6 +40,41 @@ namespace Capa_Datos
         public double Total { get => _Total; set => _Total = value; }
         public string Estado { get => _Estado; set => _Estado = value; }
         public int IdUario { get => _idUario; set => _idUario = value; }
+        //isntacia a la calse conexion
+        CD_Conexion _Conexion = new CD_Conexion();
+        public DataTable ListarProductos()
+        {
+            string sqlQuery = @"
+                    SELECT 
+                        idPro, 
+                        nombre,
+                        descripcion,
+                        precio,
+                        stock
+                    FROM 
+                       v_ProductosRegistrados";
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sqlQuery, _Conexion.AbrirConexion());
+                cmd.CommandType = CommandType.Text;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
 
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                _Conexion.CerrarConexion();
+            }
+        }
+        //insertar producots
+
+        
     }
 }
