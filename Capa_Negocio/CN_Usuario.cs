@@ -14,7 +14,6 @@ namespace Capa_Negocio
     {
         //referencia a la CD_Usuario
         CD_Usuario ObjUser = new CD_Usuario();
-        //Encriptacion
 
         //login
         public DataTable CN_Login(string correo, string passwrd)

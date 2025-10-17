@@ -34,5 +34,12 @@ namespace Capa_Negocio
         {
             ObjProducto.EliminarProducto(idProducto);
         }
+        //Metodo para buscar productos por nombre
+        public DataTable CN_BuscarProductos(string filtro)
+        {
+            CD_Producto objDato = new CD_Producto();
+            return objDato.BuscarProductos(filtro);
+        }
+
     }
 }

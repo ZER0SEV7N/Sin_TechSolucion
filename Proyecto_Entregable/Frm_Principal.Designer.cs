@@ -50,7 +50,8 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.Control;
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Location = new System.Drawing.Point(0, 101);
             this.menuStrip1.Name = "menuStrip1";
@@ -67,7 +68,7 @@
             this.toolStripStatusLabelNombreYapellido,
             this.toolStripStatusLabel2,
             this.toolStripStatusLabelRol});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 664);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 557);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
             this.statusStrip1.Size = new System.Drawing.Size(1213, 30);
@@ -125,7 +126,7 @@
             this.toolStripStatusLabelNombreYapellido.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.toolStripStatusLabelNombreYapellido.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.toolStripStatusLabelNombreYapellido.Name = "toolStripStatusLabelNombreYapellido";
-            this.toolStripStatusLabelNombreYapellido.Size = new System.Drawing.Size(641, 24);
+            this.toolStripStatusLabelNombreYapellido.Size = new System.Drawing.Size(787, 24);
             this.toolStripStatusLabelNombreYapellido.Spring = true;
             this.toolStripStatusLabelNombreYapellido.Text = "XXXXXXXXXXX";
             // 
@@ -165,7 +166,7 @@
             // 
             this.TelefonoLabel.AutoSize = true;
             this.TelefonoLabel.Font = new System.Drawing.Font("Courier New", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TelefonoLabel.Location = new System.Drawing.Point(395, 54);
+            this.TelefonoLabel.Location = new System.Drawing.Point(380, 57);
             this.TelefonoLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TelefonoLabel.Name = "TelefonoLabel";
             this.TelefonoLabel.Size = new System.Drawing.Size(177, 34);
@@ -189,7 +190,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(4, 4);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(336, 82);
+            this.pictureBox1.Size = new System.Drawing.Size(368, 93);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -198,7 +199,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1213, 694);
+            this.ClientSize = new System.Drawing.Size(1213, 587);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);

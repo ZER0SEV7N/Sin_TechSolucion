@@ -133,8 +133,34 @@ namespace Proyecto_Entregable
                         var form = this.ActiveMdiChild as Frm_Almacenes;
                         form?.ActivarModoEliminar();
                     });
-                    menuProd.DropDownItems.Add("Generar Reporte de Productos", null, (s, e) => { /* Lógica para generar reporte */ });
+                    menuProd.DropDownItems.Add("Generar Reporte de Productos", null, (s, e) => { /*Lógica para generar reporte*/
+                    });
+                    //Agregar el separador visual
+                    ToolStripSeparator Separator = new ToolStripSeparator();
+                    //Agregar los controles para filtrar por nombre
+                    ToolStripTextBox lblFiltro = new ToolStripTextBox
+                    {
+                        Name = "lblFiltro",
+                        Text = "Filtrar por Nombre: ",
+                        ReadOnly = true,
+                        BorderStyle = BorderStyle.None,
+                        Width = 130
+                    };
+                    ToolStripTextBox txtFiltro = new ToolStripTextBox
+                    {
+                        Name = "txtFiltro",
+                        Width = 200,
+                        BorderStyle = BorderStyle.FixedSingle
+                    };
+                    //Evento para filtrar en tiempo real
+                    txtFiltro.TextChanged += (s, e) => {
+                        var form = this.ActiveMdiChild as Frm_Almacenes;
+                        form?.FiltrarProductos(txtFiltro.Text);
+                    };
                     menuStrip1.Items.AddRange(new ToolStripItem[] { menuProd});
+                    menuStrip1.Items.Add(Separator);
+                    menuStrip1.Items.Add(lblFiltro);
+                    menuStrip1.Items.Add(txtFiltro);
                     break;
                 case "Frm_Vendedor":
                     //Agregar opciones especificas para Frm_Vendedor

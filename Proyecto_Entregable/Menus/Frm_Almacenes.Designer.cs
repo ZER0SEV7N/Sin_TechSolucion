@@ -58,11 +58,11 @@
             // 
             this.lblOpcion.AutoSize = true;
             this.lblOpcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOpcion.Location = new System.Drawing.Point(877, 13);
+            this.lblOpcion.Location = new System.Drawing.Point(874, 9);
             this.lblOpcion.Name = "lblOpcion";
-            this.lblOpcion.Size = new System.Drawing.Size(234, 32);
+            this.lblOpcion.Size = new System.Drawing.Size(279, 32);
             this.lblOpcion.TabIndex = 3;
-            this.lblOpcion.Text = "XXXXXXXXXXX";
+            this.lblOpcion.Text = "Visualizar Producto";
             // 
             // txtNombre
             // 
@@ -103,7 +103,9 @@
             // 
             // btnConfirmar
             // 
+            this.btnConfirmar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfirmar.Enabled = false;
+            this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmar.Location = new System.Drawing.Point(907, 310);
             this.btnConfirmar.Name = "btnConfirmar";

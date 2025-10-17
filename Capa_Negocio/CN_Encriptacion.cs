@@ -9,13 +9,13 @@ namespace Capa_Negocio
 {
     public static class CN_Encriptacion
     {
-        //endriptacion de la contraseña
+        //encriptacion de la contraseña
         public static string Encrip(string text)
         {
-            //usar la libreira shas
-            using(SHA256 sha = SHA256.Create())
+            //usar la libreira Sha256
+            using (SHA256 sha = SHA256.Create())
             {
-                //crar un  arreglo de bytes el texto ingresado
+                //crar un arreglo de bytes el texto ingresado
                 byte[] bytesTetxo = Encoding.UTF8.GetBytes(text);
 
                 //calcular el arreglo de 32 bites

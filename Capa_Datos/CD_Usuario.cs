@@ -57,7 +57,7 @@ namespace Capa_Datos
             //encriptado nro1:
             //encriptado nro2:
             //procedimiento almacenado
-            SqlCommand cmd = new SqlCommand("PA_Login_Verificar", _Conexion.AbrirConexion());
+            SqlCommand cmd = new SqlCommand("SP_Login_Verificar", _Conexion.AbrirConexion());
             cmd.CommandType = CommandType.StoredProcedure;
             //Añadir los valores
             cmd.Parameters.AddWithValue("@Correo_In", correo);

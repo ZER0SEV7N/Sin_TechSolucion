@@ -40,10 +40,9 @@ namespace Capa_Datos
         public int IdUser { get => _IdUser; set => _IdUser = value; }
         //objeto conexion
         private CD_Conexion _Conexion = new CD_Conexion();
-        //metodo para ver los porducots
+        //metodo para ver los productos
         public DataTable ListarProductos()
-        {
-
+        {           
             try
             {
                 SqlCommand cmd = new SqlCommand("SP_CRUD_Productos", _Conexion.AbrirConexion());
@@ -136,7 +135,7 @@ namespace Capa_Datos
                 cmd.Parameters.AddWithValue("@IdUser", DBNull.Value);
 
                 cmd.ExecuteNonQuery();
-               
+
             }
             catch (Exception ex)
             {
@@ -146,7 +145,33 @@ namespace Capa_Datos
             {
                 _Conexion.CerrarConexion();
             }
-
         }
+            //Metodo para buscar un producto por nombre
+            public DataTable BuscarProductos(string filtro)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SP_CRUD_Productos", _Conexion.AbrirConexion());
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Opcion", "CONSULTAR"); //
+                cmd.Parameters.AddWithValue("@Nombre", filtro);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error en BuscarProductos: " + ex.Message);
+                return null;
+            }
+            finally
+            {
+                _Conexion.CerrarConexion();
+            }
+        }
+
     }
 }
+
