@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -49,43 +50,28 @@ namespace Capa_Datos
         #endregion
         //instancia de la conexion
         CD_Conexion _Conexion = new CD_Conexion();
-        //metodo apra el 
-        public string CD_LoginUser(string correo, string passwrd)
+        //metodo para manejar el login
+        public DataTable CD_LoginUser(string correo, string passwrdHas)
         {
-            string rolUser = "";
-            string prod_name= "PA_Login_Verificar";
-            //prepara la ejecucion SQL 
-            SqlCommand comando = new SqlCommand(prod_name, _Conexion.AbrirConexion());
-            comando.CommandType = CommandType.StoredProcedure;
-            //asignar valores para el procedimiento
-            comando.Parameters.AddWithValue("@Correo_In", correo);
-            comando.Parameters.AddWithValue("@Contrasenia_In", passwrd);
-            try
-            {
-                //ejecutar par la lectrus
-                SqlDataReader leer = comando.ExecuteReader();
-                //verificar si esta siendo leido
-                if (leer.Read())
-                {
-                    //obtener los datos requerido
-                    rolUser = leer["nombreRol"].ToString();
-                    //verificar si el usuario esta activo
-                    bool activo = (bool)leer["activo"];
-                    //negar acceso al estar inactivo y retornar nada
-                    if (!activo) return rolUser = "";
-                }
-
-            }
-            catch (Exception e)
-            {
-
-            }
-            finally
-            {
-                _Conexion.CerrarConexion();
-            }
-            return rolUser;
-
+            //encriptar la contraseña 
+            //encriptado nro1:
+            //encriptado nro2:
+            //procedimiento almacenado
+            SqlCommand cmd = new SqlCommand("SP_Login_Verificar", _Conexion.AbrirConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+            //Añadir los valores
+            cmd.Parameters.AddWithValue("@Correo_In", correo);
+            cmd.Parameters.AddWithValue("@Contrasenia_In", passwrdHas);
+            //Ejecutar el comando
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            //Crear el DataTable
+            DataTable dt = new DataTable();
+            //llenar el datatable
+            da.Fill(dt);
+            //cerrar la conexion
+            _Conexion.CerrarConexion();
+            //Devolver el datatable
+            return dt;
         }
         #region Almacen
         

@@ -32,7 +32,28 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Proyecto_Entregable.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,11 +67,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Frm_Formularios.cs">
+    <Compile Include="Menus\Frm_Informes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_Formularios.Designer.cs">
-      <DependentUpon>Frm_Formularios.cs</DependentUpon>
+    <Compile Include="Menus\Frm_Informes.Designer.cs">
+      <DependentUpon>Frm_Informes.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm_Principal.cs">
       <SubType>Form</SubType>
@@ -58,41 +79,43 @@
     <Compile Include="Frm_Principal.Designer.cs">
       <DependentUpon>Frm_Principal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm_vendedor.cs">
+    <Compile Include="Menus\Frm_Vendedor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_vendedor.Designer.cs">
-      <DependentUpon>Frm_vendedor.cs</DependentUpon>
+    <Compile Include="Menus\Frm_Vendedor.Designer.cs">
+      <DependentUpon>Frm_Vendedor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm_Inicio.cs">
+    <Compile Include="Frm_Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_Inicio.Designer.cs">
-      <DependentUpon>Frm_Inicio.cs</DependentUpon>
+    <Compile Include="Frm_Login.Designer.cs">
+      <DependentUpon>Frm_Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm_Almacenes.cs">
+    <Compile Include="Menus\Frm_Almacenes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_Almacenes.Designer.cs">
+    <Compile Include="Menus\Frm_Almacenes.Designer.cs">
       <DependentUpon>Frm_Almacenes.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Frm_Formularios.resx">
-      <DependentUpon>Frm_Formularios.cs</DependentUpon>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <EmbeddedResource Include="Menus\Frm_Informes.resx">
+      <DependentUpon>Frm_Informes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm_Almacenes.resx">
+    <EmbeddedResource Include="Menus\Frm_Almacenes.resx">
       <DependentUpon>Frm_Almacenes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm_Inicio.resx">
-      <DependentUpon>Frm_Inicio.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_Login.resx">
+      <DependentUpon>Frm_Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Principal.resx">
       <DependentUpon>Frm_Principal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm_vendedor.resx">
-      <DependentUpon>Frm_vendedor.cs</DependentUpon>
+    <EmbeddedResource Include="Menus\Frm_Vendedor.resx">
+      <DependentUpon>Frm_Vendedor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Menus\Reportes\ReporteAlmacen.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -103,6 +126,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -149,6 +173,11 @@
     <Content Include="Resource\reloj.png" />
     <Content Include="Resource\Salida.png" />
     <Content Include="Resource\Sign In.png" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll" />
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll" />
+    <Content Include="SqlServerTypes\x86\msvcr120.dll" />
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

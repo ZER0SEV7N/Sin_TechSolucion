@@ -10,14 +10,36 @@ namespace Capa_Negocio
 {
     public class CN_Producto
     {
-        //obejto de referencia
+        //Instancia en referencia al objeto productos
         CD_Producto ObjProducto = new CD_Producto();
-        //obtener los productos
-        public DataTable CN_TabalaProductos()
+        //Metodo para listar los productos
+        public DataTable CN_ListarProductos()
         {
             DataTable dt = new DataTable();
-            dt = ObjProducto.CD_TabalaProductos();
+            dt = ObjProducto.ListarProductos();
             return dt;
         }
+        //Metodo para insertar productos
+        public void CN_InsertarProducto(string nombre,string descripcion,  double precio, int stock, int idUser)
+        {
+            ObjProducto.InsertarProducto(nombre, descripcion, precio, stock, idUser);
+        }
+        //Metodo para editar productos
+        public void CN_EditarProducto(int idProducto, string nombre, string descripcion, double precio, int stock, int idUser)
+        {
+            ObjProducto.Editar(idProducto, nombre, descripcion, precio, stock, idUser);
+        }
+        //Metodo para eliminar productos
+        public void CN_EliminarProducto(int idProducto)
+        {
+            ObjProducto.EliminarProducto(idProducto);
+        }
+        //Metodo para buscar productos por nombre
+        public DataTable CN_BuscarProductos(string filtro)
+        {
+            CD_Producto objDato = new CD_Producto();
+            return objDato.BuscarProductos(filtro);
+        }
+
     }
 }

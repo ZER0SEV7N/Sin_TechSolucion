@@ -39,23 +39,25 @@ namespace Capa_Datos
         public bool Activo { get => _activo; set => _activo = value; }
         public int IdUser { get => _IdUser; set => _IdUser = value; }
         //objeto conexion
-        CD_Conexion _Conexion = new CD_Conexion();
-        //metodo para ver los porducots
+        private CD_Conexion _Conexion = new CD_Conexion();
+        //metodo para ver los productos
         public DataTable ListarProductos()
-        {
+        {           
             try
             {
-                SqlDataAdapter adapter = new SqlDataAdapter("SP_CRUD_Productos", _Conexion.AbrirConexion());
-                adapter.SelectCommand.CommandType = CommandType.Text;
-                //nombre de la tabla internamente
-                DataTable dt = new DataTable("Productos");
-                adapter.Fill(dt);
+                SqlCommand cmd = new SqlCommand("SP_CRUD_Productos", _Conexion.AbrirConexion());
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Opcion", "LISTAR");
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
                 return dt;
-               
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
-                Console.WriteLine("Error de obtener prodcutos", ex);
+                Console.WriteLine(ex.Message);
                 return null;
             }
             finally
@@ -63,5 +65,113 @@ namespace Capa_Datos
                 _Conexion.CerrarConexion();
             }
         }
+        // Metodo insertar
+        public void InsertarProducto(string nombre, string descripcion, double precio, int stock, int idUser)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SP_CRUD_Productos", _Conexion.AbrirConexion());
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Opcion", "INSERTAR");
+                cmd.Parameters.AddWithValue("@IdPro", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Nombre", nombre);
+                cmd.Parameters.AddWithValue("@Descripcion", descripcion);
+                cmd.Parameters.AddWithValue("@Precio", precio);
+                cmd.Parameters.AddWithValue("@Stock", stock);
+                cmd.Parameters.AddWithValue("@IdUser", idUser);
+
+                cmd.ExecuteNonQuery();
+                _Conexion.CerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally 
+            { 
+                _Conexion.CerrarConexion(); 
+            }
+        }
+        //metodo editar
+        public void Editar(int idPro, string nombre, string descripcion, double precio, int stock, int idUser)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SP_CRUD_Productos", _Conexion.AbrirConexion());
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Opcion", "ACTUALIZAR");
+                cmd.Parameters.AddWithValue("@IdPro", idPro);
+                cmd.Parameters.AddWithValue("@Nombre", nombre);
+                cmd.Parameters.AddWithValue("@Descripcion", descripcion);
+                cmd.Parameters.AddWithValue("@Precio", precio);
+                cmd.Parameters.AddWithValue("@Stock", stock);
+                cmd.Parameters.AddWithValue("@IdUser", idUser);
+
+                cmd.ExecuteNonQuery();
+                _Conexion.CerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                _Conexion.CerrarConexion();
+            }
+        }
+        //metodo eliminar
+        public void EliminarProducto(int idPro)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SP_CRUD_Productos", _Conexion.AbrirConexion());
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Opcion", "ELIMINAR");
+                cmd.Parameters.AddWithValue("@IdPro", idPro);
+                cmd.Parameters.AddWithValue("@Nombre", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Descripcion", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Precio", DBNull.Value);
+                cmd.Parameters.AddWithValue("@Stock", DBNull.Value);
+                cmd.Parameters.AddWithValue("@IdUser", DBNull.Value);
+
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                _Conexion.CerrarConexion();
+            }
+        }
+            //Metodo para buscar un producto por nombre
+            public DataTable BuscarProductos(string filtro)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SP_CRUD_Productos", _Conexion.AbrirConexion());
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Opcion", "CONSULTAR"); //
+                cmd.Parameters.AddWithValue("@Nombre", filtro);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error en BuscarProductos: " + ex.Message);
+                return null;
+            }
+            finally
+            {
+                _Conexion.CerrarConexion();
+            }
+        }
+
     }
 }
+

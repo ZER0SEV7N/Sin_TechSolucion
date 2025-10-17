@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Proyecto_Entregable
 {
-    public partial class Frm_vendedor : Form
+    public partial class Frm_Informes : Form
     {
-        public Frm_vendedor()
+        public Frm_Informes()
         {
             InitializeComponent();
         }
