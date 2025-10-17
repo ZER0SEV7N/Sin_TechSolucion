@@ -133,7 +133,10 @@ namespace Proyecto_Entregable
                         var form = this.ActiveMdiChild as Frm_Almacenes;
                         form?.ActivarModoEliminar();
                     });
-                    menuProd.DropDownItems.Add("Generar Reporte de Productos", null, (s, e) => { /*Lógica para generar reporte*/
+                    menuProd.DropDownItems.Add("Generar Reporte de Productos", null, (s, e) => { 
+                        Frm_Informes frm = new Frm_Informes();
+                        frm.TipoReportePredeterminado = "Productos"; // le pasamos qué reporte mostrar
+                        AbrirFormularios(frm); // reutiliza tu método que abre formularios MDI
                     });
                     //Agregar el separador visual
                     ToolStripSeparator Separator = new ToolStripSeparator();
