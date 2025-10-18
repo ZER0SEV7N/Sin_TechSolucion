@@ -208,6 +208,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Frm_Principal";
             this.Text = "Frm_Principal";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Frm_Principal_FormClosing);
             this.Load += new System.EventHandler(this.Frm_Principal_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

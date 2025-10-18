@@ -55,7 +55,6 @@ namespace Proyecto_Entregable
             try
             {
 
-                
                 //llamar el metodo de insertar venta
                 //Mensaje de exito
                 MessageBox.Show("Venta creada correctamente");

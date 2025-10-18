@@ -172,15 +172,14 @@
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.lblOpcion);
             this.Controls.Add(this.DGVAlmacen);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Frm_Almacenes";
-            this.Opacity = 0D;
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Almacen";
-            this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.DGVAlmacen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

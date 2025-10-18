@@ -2,79 +2,97 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Capa_Datos
 {
     public class CD_Ventas
     {
-        //Atributos
-        private int _idVenta;
-        private int _idCliente;
-        private DateTime _fecha;
-        private double _Total;
-        private string _Estado;
-        private int _idUario;
-        //contructores
-        public CD_Ventas(int idVenta, int idCliente, DateTime fecha, double total, string estado, int idUario)
-        {
-            _idVenta = idVenta;
-            _idCliente = idCliente;
-            _fecha = fecha;
-            _Total = total;
-            _Estado = estado;
-            _idUario = idUario;
-        }
+        //Propiedades de ventas
+        public int IdVenta { get; set; }
+        public int IdCliente { get; set; }
+        public DateTime Fecha { get; set; }
+        public double Total { get; set; }
+        public string Estado { get; set; }
+        public int IdUsuario { get; set; }
 
-        public CD_Ventas()
-        {
-        }
-        //metodos gets y setss
+        //Lista de detalles
+        public List<CD_DetalleVentas> Detalles { get; set; } = new List<CD_DetalleVentas>();
 
-        public int IdVenta { get => _idVenta; set => _idVenta = value; }
-        public int IdCliente { get => _idCliente; set => _idCliente = value; }
-        public DateTime Fecha { get => _fecha; set => _fecha = value; }
-        public double Total { get => _Total; set => _Total = value; }
-        public string Estado { get => _Estado; set => _Estado = value; }
-        public int IdUario { get => _idUario; set => _idUario = value; }
-        //isntacia a la calse conexion
-        CD_Conexion _Conexion = new CD_Conexion();
-        public DataTable ListarProductos()
+        //Instancia de conexión
+        CD_Conexion conexion = new CD_Conexion();
+
+        // --- Método para insertar venta con detalles ---
+        public bool InsertarVentaCompleta()
         {
-            string sqlQuery = @"
-                    SELECT 
-                        idPro, 
-                        nombre,
-                        descripcion,
-                        precio,
-                        stock
-                    FROM 
-                       v_ProductosRegistrados";
+            SqlConnection cn = conexion.AbrirConexion();
+            SqlTransaction transaccion = cn.BeginTransaction();
+
             try
             {
-                SqlCommand cmd = new SqlCommand(sqlQuery, _Conexion.AbrirConexion());
-                cmd.CommandType = CommandType.Text;
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
+                // Insertar la venta principal
+                SqlCommand cmdVenta = new SqlCommand(
+                    @"INSERT INTO Ventas (IdCliente, Fecha, Total, Estado, IdUsuario)
+                      VALUES (@IdCliente, @Fecha, @Total, @Estado, @IdUsuario);
+                      SELECT SCOPE_IDENTITY();", cn, transaccion);
 
-                return dt;
+                cmdVenta.Parameters.AddWithValue("@IdCliente", IdCliente);
+                cmdVenta.Parameters.AddWithValue("@Fecha", Fecha);
+                cmdVenta.Parameters.AddWithValue("@Total", Total);
+                cmdVenta.Parameters.AddWithValue("@Estado", Estado);
+                cmdVenta.Parameters.AddWithValue("@IdUsuario", IdUsuario);
+
+                // Obtener el ID generado
+                int idVentaGenerado = Convert.ToInt32(cmdVenta.ExecuteScalar());
+
+                // Insertar los detalles
+                foreach (var detalle in Detalles)
+                {
+                    SqlCommand cmdDetalle = new SqlCommand(
+                        @"INSERT INTO DetalleVenta (IdVenta, IdPro, Cantidad, PrecioUnitario, Subtotal)
+                          VALUES (@IdVenta, @IdPro, @Cantidad, @PrecioUnitario, @Subtotal)", cn, transaccion);
+
+                    cmdDetalle.Parameters.AddWithValue("@IdVenta", idVentaGenerado);
+                    cmdDetalle.Parameters.AddWithValue("@IdPro", detalle.IdPor);
+                    cmdDetalle.Parameters.AddWithValue("@Cantidad", detalle.Cantidad);
+                    cmdDetalle.Parameters.AddWithValue("@PrecioUnitario", detalle.PrecioUnitario);
+                    cmdDetalle.Parameters.AddWithValue("@Subtotal", detalle.Subtotal);
+
+                    cmdDetalle.ExecuteNonQuery();
+
+                    // Disminuir stock
+                    SqlCommand cmdStock = new SqlCommand(
+                        "UPDATE Productos SET stock = stock - @Cantidad WHERE idPro = @IdPro", cn, transaccion);
+                    cmdStock.Parameters.AddWithValue("@Cantidad", detalle.Cantidad);
+                    cmdStock.Parameters.AddWithValue("@IdPro", detalle.IdPor);
+                    cmdStock.ExecuteNonQuery();
+                }
+
+                // Si todo sale bien
+                transaccion.Commit();
+                return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return null;
+                transaccion.Rollback();
+                Console.WriteLine("Error al registrar venta: " + ex.Message);
+                return false;
             }
             finally
             {
-                _Conexion.CerrarConexion();
+                conexion.CerrarConexion();
             }
         }
-        //insertar producots
 
-        
+        //Listar productos disponibles
+        public DataTable ListarProductos()
+        {
+            string query = @"SELECT idPro, nombre, descripcion, precio, stock FROM v_ProductosRegistrados";
+            SqlCommand cmd = new SqlCommand(query, conexion.AbrirConexion());
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            conexion.CerrarConexion();
+            return dt;
+        }
     }
 }

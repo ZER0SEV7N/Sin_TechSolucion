@@ -12,6 +12,8 @@ namespace Proyecto_Entregable
 {
     public partial class Frm_Principal : Form
     {
+        // Variable para guardar el formulario anterior
+        private Type formularioAnterior = null;
         public Frm_Principal()
         {
             InitializeComponent();
@@ -38,7 +40,7 @@ namespace Proyecto_Entregable
             Form formularioExistente = Application.OpenForms
                 .Cast<Form>()
                 .FirstOrDefault(f => f.GetType() == FormHijo.GetType());
-
+            //Si ya está abierto
             if (formularioExistente != null)
             {
                 //Si ya está abierto, solo lo traemos al frente
@@ -48,7 +50,7 @@ namespace Proyecto_Entregable
             }
 
             //Cerrar otros formularios MDI
-            foreach (Form form in this.MdiChildren)
+            foreach (Form form in this.MdiChildren.ToArray())
             {
                 form.Close();
             }
@@ -56,8 +58,12 @@ namespace Proyecto_Entregable
             //Mostrar el nuevo formulario
             FormHijo.MdiParent = this;
             FormHijo.Dock = DockStyle.Fill;
+            FormHijo.Load += (s, e) =>
+            {
+                CargarOpcionesDelFormulario(FormHijo.GetType().Name);
+            };
+
             FormHijo.Show();
-            CargarOpcionesDelFormulario(FormHijo.GetType().Name);
         }
         private void CargarMenu(string rol)
         {
@@ -110,7 +116,7 @@ namespace Proyecto_Entregable
                 string nombreItem = menuStrip1.Items[i].Text;
                 if (nombreItem != "Inicio")
                 {
-                    //Rempver el item del menu
+                    //Remover el item del menu
                     menuStrip1.Items.RemoveAt(i);
                 }
             }
@@ -133,7 +139,9 @@ namespace Proyecto_Entregable
                         var form = this.ActiveMdiChild as Frm_Almacenes;
                         form?.ActivarModoEliminar();
                     });
-                    menuProd.DropDownItems.Add("Generar Reporte de Productos", null, (s, e) => { /*Lógica para generar reporte*/
+                    menuProd.DropDownItems.Add("Generar Reporte de Productos", null, (s, e) => {
+                        formularioAnterior = this.ActiveMdiChild.GetType();
+                        AbrirFormularios(new Frm_Informes());
                     });
                     //Agregar el separador visual
                     ToolStripSeparator Separator = new ToolStripSeparator();
@@ -146,31 +154,118 @@ namespace Proyecto_Entregable
                         BorderStyle = BorderStyle.None,
                         Width = 130
                     };
-                    ToolStripTextBox txtFiltro = new ToolStripTextBox
+                    ToolStripTextBox txtFiltroAlmacenes = new ToolStripTextBox // Cambiado el nombre aquí
                     {
                         Name = "txtFiltro",
                         Width = 200,
                         BorderStyle = BorderStyle.FixedSingle
                     };
                     //Evento para filtrar en tiempo real
-                    txtFiltro.TextChanged += (s, e) => {
+                    txtFiltroAlmacenes.TextChanged += (s, e) => {
                         var form = this.ActiveMdiChild as Frm_Almacenes;
-                        form?.FiltrarProductos(txtFiltro.Text);
+                        form?.FiltrarProductos(txtFiltroAlmacenes.Text);
                     };
                     menuStrip1.Items.AddRange(new ToolStripItem[] { menuProd});
                     menuStrip1.Items.Add(Separator);
                     menuStrip1.Items.Add(lblFiltro);
-                    menuStrip1.Items.Add(txtFiltro);
+                    menuStrip1.Items.Add(txtFiltroAlmacenes); // Usar el nuevo nombre
                     break;
                 case "Frm_Vendedor":
-                    //Agregar opciones especificas para Frm_Vendedor
+                    //Menu Ventas
+                    ToolStripMenuItem menuVentas = new ToolStripMenuItem("Ventas");
+                    //Opcion para registrar venta
+                    menuVentas.DropDownItems.Add("Registrar Venta", null, (s, e) => {
+                        var form = this.ActiveMdiChild as Frm_Vendedor;
+                        //form?.ActivarModoVenta();
+                    });
+                    //Opcion para modificar Estado de venta
+                    menuVentas.DropDownItems.Add("Modificar Estado de Venta", null, (s, e) => {
+                        var form = this.ActiveMdiChild as Frm_Vendedor;
+                        //form?.ActivarModoModificarEstado();
+                    });
+                    //Opcion para eliminar venta
+                    menuVentas.DropDownItems.Add("Eliminar Venta", null, (s, e) =>
+                    {
+                        var form = this.ActiveMdiChild as Frm_Vendedor;
+                        //form?.ActivarModoEliminarVenta();
+                    });
+                    //Separador
+                    menuVentas.DropDownItems.Add(new ToolStripSeparator());
+                    //Opcion para generar reporte de ventas
+                    menuVentas.DropDownItems.Add("Generar Reporte de Ventas", null, (s, e) => {
+                        formularioAnterior = this.ActiveMdiChild.GetType();
+                        AbrirFormularios(new Frm_Informes());
+                    });
+                    
+                    //Menu Clientes
+                    ToolStripMenuItem menuClientes = new ToolStripMenuItem("Clientes");
+                    //Opcion para agregar cliente
+                    menuClientes.DropDownItems.Add("Agregar Cliente", null, (s, e) => {
+                        var form = this.ActiveMdiChild as Frm_Vendedor;
+                        //form?.ActivarModoAgregarCliente();
+                    });
+                    //opcion para editar cliente
+                    menuClientes.DropDownItems.Add("Modificar Cliente", null, (s, e) => {
+                        var form = this.ActiveMdiChild as Frm_Vendedor;
+                        //form?.ActivarModoModificarCliente();
+                    });
+                    menuClientes.DropDownItems.Add(new ToolStripSeparator());
+                    //Opcion para ver lista de clientes
+                    menuClientes.DropDownItems.Add("Ver Lista de Clientes", null, (s, e) =>
+                    {
+                        var form = this.ActiveMdiChild as Frm_Vendedor;
+                        //form?.MostrarListaClientes();
+                    });
+                    // ===== FILTRO RÁPIDO =====
+                    ToolStripSeparator separatorFiltro = new ToolStripSeparator();
+
+                    ToolStripLabel lblFiltroVendedor = new ToolStripLabel("Buscar venta/cliente:");
+                    ToolStripTextBox txtFiltroVendedor = new ToolStripTextBox // Cambiado el nombre aquí
+                    {
+                        Name = "txtFiltro",
+                        Width = 200,
+                        BorderStyle = BorderStyle.FixedSingle
+                    };
+
+                    txtFiltroVendedor.TextChanged += (s, e) =>
+                    {
+                        var form = this.ActiveMdiChild as Frm_Vendedor;
+                        //form?.FiltrarGeneral(txtFiltroVendedor.Text);
+                    };
+
+                    // Agregar todos al menú principal
+                    menuStrip1.Items.AddRange(new ToolStripItem[]
+                    {
+                        menuVentas,
+                        menuClientes,
+                        separatorFiltro,
+                        lblFiltroVendedor,
+                        txtFiltroVendedor 
+                    });
+
                     break;
                 case "Frm_Informes":
                     //Agregar opciones especificas para Frm_Informes
+                    //Opcion para volver al formulario anterior
+                    ToolStripMenuItem menuVolver = new ToolStripMenuItem("Volver");
+                    //Metodo para volver al formulario anterior
+                    menuVolver.Click += (s, e) => {
+                        //Verificar si hay un formulario anterior guardado
+                        if (formularioAnterior != null)
+                        {
+                            //Abrir el formulario anterior
+                            //Crear una nueva instancia del formulario anterior
+                            Form nuevoFormulario = (Form)Activator.CreateInstance(formularioAnterior);
+                            AbrirFormularios(nuevoFormulario);
+                            formularioAnterior = null; // Limpiar referencia
+                        }
+                    };
+                    //Agregar al menuStrip
+                    menuStrip1.Items.Add(menuVolver);
                     break;
-            }
+                }
         }
-
+        
 
         //Metodo para cerrar sesion
         private void cerrarSesiónToolStripMenuItem_Click(object sender, EventArgs e)
@@ -181,7 +276,22 @@ namespace Proyecto_Entregable
             Frm_Login frmLogin = new Frm_Login();
             frmLogin.Show();
         }
+        //Evento para confirmar el cierre del formulario principal
+        private void Frm_Principal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //Confirmar cierre si se desea
+            DialogResult result = MessageBox.Show(
+                "¿Seguro que desea salir del sistema?",
+                "Confirmar salida",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
 
-
+            if (result == DialogResult.No)
+            {
+                e.Cancel = true;//Cancela el cierre
+                return;
+            }
+        }
     }
 }

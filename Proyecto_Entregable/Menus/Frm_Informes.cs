@@ -2,14 +2,11 @@
 using System;
 using System.Data;
 using System.Windows.Forms;
-using Capa_Negocio;
 
 namespace Proyecto_Entregable
 {
     public partial class Frm_Informes : Form
     {
-        CN_Producto objPro = new CN_Producto();
-
         public Frm_Informes()
         {
             InitializeComponent();
@@ -17,6 +14,7 @@ namespace Proyecto_Entregable
 
         private void Frm_Informes_Load(object sender, EventArgs e)
         {
+
             ConfigurarOpcionesPorRol();
             this.reportViewer1.RefreshReport();
         }
@@ -24,9 +22,9 @@ namespace Proyecto_Entregable
         private void ConfigurarOpcionesPorRol()
         {
             string rol = Program.Info_Organization_Session.xRol; //Ejemplo
-
+            //Limpiar opciones previas
             cmbTipoReporte.Items.Clear();
-
+            
             if (rol == "Administrador" || rol == "Supervisor")
             {
                 //Tiene acceso a todos los reportes
@@ -56,7 +54,7 @@ namespace Proyecto_Entregable
 
             cmbTipoReporte.SelectedIndex = 0;
         }
-
+        //Evento del boton Generar al dar click
         private void btnGenerar_Click(object sender, EventArgs e)
         {
             string tipo = cmbTipoReporte.SelectedItem.ToString();
@@ -69,28 +67,39 @@ namespace Proyecto_Entregable
                 case "Ventas":
                     GenerarReporteVentas();
                     break;
-                case "Usuarios":
-                    GenerarReporteUsuarios();
-                    break;
-                default:
-                    MessageBox.Show("Seleccione un tipo de reporte válido.");
-                    break;
             }
         }
-
+        //Metodo para Generar los reportes de los productos
         private void GenerarReporteProductos()
         {
-
+            try
+            {
+                // TODO: esta línea de código carga datos en la tabla 'tECHSOLUBDDataSet.v_ProductosRegistrados' Puede moverla o quitarla según sea necesario.
+                this.v_ProductosRegistradosTableAdapter.Fill(this.tECHSOLUBDDataSet.v_ProductosRegistrados);
+                // Refrescar
+                reportViewer1.RefreshReport();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar el reporte de productos: " + ex.Message);
+            }
         }
 
         private void GenerarReporteVentas()
         {
-            // Aquí iría el DataSet y lógica del reporte de ventas
+            try
+            {
+                // TODO: esta línea de código carga datos en la tabla 'tECHSOLUBDDataSet1.v_VentasConDetalles' Puede moverla o quitarla según sea necesario.
+                this.v_VentasConDetallesTableAdapter.Fill(this.tECHSOLUBDDataSet1.v_VentasConDetalles);
+                // Refrescar
+                reportViewer1.RefreshReport();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar el reporte de ventas: " + ex.Message);
+            }
         }
 
-        private void GenerarReporteUsuarios()
-        {
-            // Aquí iría el DataSet y lógica del reporte de usuarios
-        }
+
     }
 }

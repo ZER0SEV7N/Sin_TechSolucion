@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="TECHSOLUBDDataSet" targetNamespace="http://tempuri.org/TECHSOLUBDDataSet.xsd" xmlns:mstns="http://tempuri.org/TECHSOLUBDDataSet.xsd" xmlns="http://tempuri.org/TECHSOLUBDDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="TECHSOLUBDConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="TECHSOLUBDConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Proyecto_Entregable.Properties.Settings.GlobalReference.Default.TECHSOLUBDConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="v_ProductosRegistradosTableAdapter" GeneratorDataComponentClassName="v_ProductosRegistradosTableAdapter" Name="v_ProductosRegistrados" UserDataComponentName="v_ProductosRegistradosTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="TECHSOLUBDConnectionString (Settings)" DbObjectName="TECHSOLUBD.dbo.v_ProductosRegistrados" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT idPro, nombre, descripcion, precio, stock, RegistradoPor FROM dbo.v_ProductosRegistrados</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="idPro" DataSetColumn="idPro" />
+              <Mapping SourceColumn="nombre" DataSetColumn="nombre" />
+              <Mapping SourceColumn="descripcion" DataSetColumn="descripcion" />
+              <Mapping SourceColumn="precio" DataSetColumn="precio" />
+              <Mapping SourceColumn="stock" DataSetColumn="stock" />
+              <Mapping SourceColumn="RegistradoPor" DataSetColumn="RegistradoPor" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="TECHSOLUBDDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_UserDSName="TECHSOLUBDDataSet" msprop:Generator_DataSetName="TECHSOLUBDDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="v_ProductosRegistrados" msprop:Generator_RowEvHandlerName="v_ProductosRegistradosRowChangeEventHandler" msprop:Generator_RowDeletedName="v_ProductosRegistradosRowDeleted" msprop:Generator_RowDeletingName="v_ProductosRegistradosRowDeleting" msprop:Generator_RowEvArgName="v_ProductosRegistradosRowChangeEvent" msprop:Generator_TablePropName="v_ProductosRegistrados" msprop:Generator_RowChangedName="v_ProductosRegistradosRowChanged" msprop:Generator_RowChangingName="v_ProductosRegistradosRowChanging" msprop:Generator_TableClassName="v_ProductosRegistradosDataTable" msprop:Generator_RowClassName="v_ProductosRegistradosRow" msprop:Generator_TableVarName="tablev_ProductosRegistrados" msprop:Generator_UserTableName="v_ProductosRegistrados">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="idPro" msprop:Generator_ColumnPropNameInRow="idPro" msprop:Generator_ColumnPropNameInTable="idProColumn" msprop:Generator_ColumnVarNameInTable="columnidPro" msprop:Generator_UserColumnName="idPro" type="xs:int" />
+              <xs:element name="nombre" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_ColumnVarNameInTable="columnnombre" msprop:Generator_UserColumnName="nombre">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="descripcion" msprop:Generator_ColumnPropNameInRow="descripcion" msprop:Generator_ColumnPropNameInTable="descripcionColumn" msprop:Generator_ColumnVarNameInTable="columndescripcion" msprop:Generator_UserColumnName="descripcion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="precio" msprop:Generator_ColumnPropNameInRow="precio" msprop:Generator_ColumnPropNameInTable="precioColumn" msprop:Generator_ColumnVarNameInTable="columnprecio" msprop:Generator_UserColumnName="precio" type="xs:decimal" />
+              <xs:element name="stock" msprop:Generator_ColumnPropNameInRow="stock" msprop:Generator_ColumnPropNameInTable="stockColumn" msprop:Generator_ColumnVarNameInTable="columnstock" msprop:Generator_UserColumnName="stock" type="xs:int" minOccurs="0" />
+              <xs:element name="RegistradoPor" msprop:Generator_ColumnPropNameInRow="RegistradoPor" msprop:Generator_ColumnPropNameInTable="RegistradoPorColumn" msprop:Generator_ColumnVarNameInTable="columnRegistradoPor" msprop:Generator_UserColumnName="RegistradoPor">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:v_ProductosRegistrados" />
+      <xs:field xpath="mstns:idPro" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
