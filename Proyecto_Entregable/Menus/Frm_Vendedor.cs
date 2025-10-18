@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Capa_Negocio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,15 @@ namespace Proyecto_Entregable
         public Frm_Vendedor()
         {
             InitializeComponent();
+            ListarProductos();
+        }
+        //referencia a la capa de neogcio
+        CN_Vendedor objVendedor = new CN_Vendedor();
+
+        //cargar datos en el dataGrid
+        private void ListarProductos()
+        {
+            DGVproducto.DataSource = objVendedor.Listar();
         }
     }
 }
